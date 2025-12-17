@@ -22,6 +22,7 @@ export class DataTestId implements OnInit, OnDestroy {
 
     if (!this.element?.nativeElement) {
       console.error('[libDataTestId] ElementRef is not available');
+      return;
     }
 
     const dataTestId = this.resolveDataTestId();
@@ -115,6 +116,9 @@ export class DataTestId implements OnInit, OnDestroy {
   }
 
   private getSemanticIdentifier(element: HTMLElement): string | null {
+    if (!element) {
+      return null;
+    }
     const ariaLabel = element.getAttribute('aria-label');
     if (ariaLabel && ariaLabel.trim().length > 0) {
       return this.sanitizeDataTestId(ariaLabel.trim());
@@ -180,11 +184,6 @@ export class DataTestId implements OnInit, OnDestroy {
   }
 
   private sanitizeDataTestId(dataTestId: string): string {
-    if (typeof dataTestId !== 'string' || dataTestId.trim().length === 0) {
-      console.warn('[libDataTestId] Cannot sanatize an empty data-test-id');
-      return 'invalid-data-testid';
-    }
-
     return dataTestId
       .toLowerCase()
       .replace(/[^a-z0-9-_]/g, '-') // replace invalid characters with hyphen
