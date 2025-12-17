@@ -16,7 +16,7 @@ export class DataTestId implements OnInit, OnDestroy {
   protected readonly validate = input<boolean>(true);
 
   ngOnInit(): void {
-    if (!this.developmentMode() || !isDevMode()) {
+    if (!this.developmentMode() && !isDevMode()) {
       return;
     }
 

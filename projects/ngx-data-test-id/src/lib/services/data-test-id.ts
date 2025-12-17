@@ -68,7 +68,7 @@ export class DataTestIdService {
     this.dataTestidElementRef.delete(element);
   }
 
-  public getAllDataTetestids(): DataTestidMetaData[] {
+  public getAllDataTestids(): DataTestidMetaData[] {
     return Array.from(this.dataTestidRegistry.values()).sort((a, b) => a.id.localeCompare(b.id));
   }
 
@@ -78,10 +78,8 @@ export class DataTestIdService {
     }
 
     const lowerCaseSearch = dataTestid.trim().toLowerCase();
-    if (lowerCaseSearch.length === 0) {
-      return [];
-    }
-    return this.getAllDataTetestids().filter((metaData) =>
+
+    return this.getAllDataTestids().filter((metaData) =>
       metaData.id.toLowerCase().includes(lowerCaseSearch)
     );
   }
