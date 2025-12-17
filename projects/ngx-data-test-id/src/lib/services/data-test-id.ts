@@ -11,7 +11,7 @@ export interface DataTestidMetaData {
 export class DataTestIdService {
   private readonly dataTestidRegistry = new Map<string, DataTestidMetaData>();
   private readonly duplicateDataTestids = new Set<string>();
-  private readonly dateTestidElementRef = new Map<HTMLElement, string>();
+  private readonly dataTestidElementRef = new Map<HTMLElement, string>();
 
   public registerDataTestId(dataTestidMetaData: DataTestidMetaData): void {
     const { id, element } = dataTestidMetaData;
@@ -30,7 +30,7 @@ export class DataTestIdService {
       return;
     }
 
-    if (!dataTestidMetaData.element || !(dataTestidMetaData.element instanceof HTMLElement)) {
+    if (!element || !(element instanceof HTMLElement)) {
       console.error('[DataTestIdService] Invalid element provided in dataTestidMetaData');
       return;
     }
@@ -48,7 +48,7 @@ export class DataTestIdService {
   }
 
   public unregisterDataTestId(dataTestid: string, element: HTMLElement): void {
-    if (!dataTestid || typeof dataTestid !== 'object') {
+    if (!dataTestid || typeof dataTestid !== 'string' || dataTestid.trim().length === 0) {
       console.error('[DataTestIdService] Invalid dataTestid for unregistration provided');
       return;
     }
@@ -65,7 +65,7 @@ export class DataTestIdService {
       this.duplicateDataTestids.delete(dataTestid);
     }
 
-    this.dateTestidElementRef.delete(element);
+    this.dataTestidElementRef.delete(element);
   }
 
   public getAllDataTetestids(): DataTestidMetaData[] {
@@ -93,10 +93,10 @@ export class DataTestIdService {
   public clearRegistry(): void {
     this.dataTestidRegistry.clear();
     this.duplicateDataTestids.clear();
-    this.dateTestidElementRef.clear();
+    this.dataTestidElementRef.clear();
   }
 
-  public getDaataTestidRegistrySize(): number {
+  public getDataTestidRegistrySize(): number {
     return this.dataTestidRegistry.size;
   }
 

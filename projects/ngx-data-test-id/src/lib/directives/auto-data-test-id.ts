@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive } from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: `

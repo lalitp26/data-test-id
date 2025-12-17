@@ -16,7 +16,7 @@ export class DataTestId implements OnInit, OnDestroy {
   protected readonly validate = input<boolean>(true);
 
   ngOnInit(): void {
-    if (this.developmentMode() && !!isDevMode()) {
+    if (!this.developmentMode() || !isDevMode()) {
       return;
     }
 
@@ -108,7 +108,7 @@ export class DataTestId implements OnInit, OnDestroy {
     for (const attr of dataTestIdAttr) {
       const attrValue = element.getAttribute(attr);
       if (attrValue && attrValue.trim().length > 0) {
-        return this.sanatizeDataTestId(attrValue.trim());
+        return this.sanitizeDataTestId(attrValue.trim());
       }
     }
     return null;
@@ -117,7 +117,7 @@ export class DataTestId implements OnInit, OnDestroy {
   private getSemanticIdentifier(element: HTMLElement): string | null {
     const ariaLabel = element.getAttribute('aria-label');
     if (ariaLabel && ariaLabel.trim().length > 0) {
-      return this.sanatizeDataTestId(ariaLabel.trim());
+      return this.sanitizeDataTestId(ariaLabel.trim());
     }
     const ariaLabelledBy = element.getAttribute('aria-labelledby');
     if (ariaLabelledBy && ariaLabelledBy.trim().length > 0) {
@@ -125,7 +125,7 @@ export class DataTestId implements OnInit, OnDestroy {
       if (labelledElement) {
         const labelText = labelledElement.textContent;
         if (labelText && labelText.trim().length > 0) {
-          return this.sanatizeDataTestId(labelText.trim());
+          return this.sanitizeDataTestId(labelText.trim());
         }
       }
     }
@@ -137,7 +137,7 @@ export class DataTestId implements OnInit, OnDestroy {
     const name = element.getAttribute('name');
 
     if (name && name.trim().length > 0) {
-      return this.sanatizeDataTestId(name.trim());
+      return this.sanitizeDataTestId(name.trim());
     }
 
     let typeAttribute: string | null = null;
@@ -147,7 +147,7 @@ export class DataTestId implements OnInit, OnDestroy {
       const placeHolder = element.getAttribute('placeholder');
 
       if (placeHolder && placeHolder.trim().length > 0) {
-        return this.sanatizeDataTestId(`${typeAttribute}-${placeHolder.trim()}`);
+        return this.sanitizeDataTestId(`${typeAttribute}-${placeHolder.trim()}`);
       }
     }
 
@@ -156,11 +156,11 @@ export class DataTestId implements OnInit, OnDestroy {
       const valueAttribute =
         element.getAttribute('value') || (element as HTMLButtonElement).innerText;
       if (valueAttribute && valueAttribute.trim().length > 0) {
-        return this.sanatizeDataTestId(`${typeAttribute}-${valueAttribute.trim()}`);
+        return this.sanitizeDataTestId(`${typeAttribute}-${valueAttribute.trim()}`);
       }
     }
     if (tagName && tagName.trim().length > 0 && typeAttribute && typeAttribute.trim().length > 0) {
-      return this.sanatizeDataTestId(`${tagName}-${typeAttribute}`);
+      return this.sanitizeDataTestId(`${tagName}-${typeAttribute}`);
     }
     return null;
   }
@@ -169,17 +169,17 @@ export class DataTestId implements OnInit, OnDestroy {
     const idAttribute = element.getAttribute('id');
 
     if (idAttribute && idAttribute.trim().length > 0) {
-      return this.sanatizeDataTestId(idAttribute.trim());
+      return this.sanitizeDataTestId(idAttribute.trim());
     }
 
     const roleAttribute = element.getAttribute('role');
     if (roleAttribute && roleAttribute.trim().length > 0) {
-      return this.sanatizeDataTestId(roleAttribute.trim());
+      return this.sanitizeDataTestId(roleAttribute.trim());
     }
     return null;
   }
 
-  private sanatizeDataTestId(dataTestId: string): string {
+  private sanitizeDataTestId(dataTestId: string): string {
     if (typeof dataTestId !== 'string' || dataTestId.trim().length === 0) {
       console.warn('[libDataTestId] Cannot sanatize an empty data-test-id');
       return 'invalid-data-testid';
