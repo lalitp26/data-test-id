@@ -3,7 +3,7 @@ import { DataTestidGeneration } from '../strategies/data-test-id-generation';
 
 @Directive({
   selector: `
-   button:not([data-testid]),
+  button:not([data-testid]),
   input:not([data-testid]),
   textarea:not([data-testid]),
   select:not([data-testid]),
