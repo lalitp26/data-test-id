@@ -1,8 +1,8 @@
-import { DataTestId } from './data-test-id';
+import { DataTestIdDirective } from './data-test-id';
 
-describe('DataTestId', () => {
+describe('DataTestIdDirective', () => {
   it('should create an instance', () => {
-    const directive = new DataTestId();
+    const directive = new DataTestIdDirective();
     expect(directive).toBeTruthy();
   });
 });

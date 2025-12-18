@@ -50,12 +50,12 @@ export class DataTestIdService {
 
   public unregisterDataTestId(dataTestid: string, element: HTMLElement): void {
     if (!dataTestid || typeof dataTestid !== 'string' || dataTestid.trim().length === 0) {
-      console.error('[DataTestIdService] Invalid dataTestid for un registration provided');
+      console.error('[DataTestIdService] Invalid dataTestid for unregistration provided');
       return;
     }
 
     if (!element || !(element instanceof HTMLElement)) {
-      console.error('[DataTestIdService] Invalid element provided for un registration');
+      console.error('[DataTestIdService] Invalid element provided for unregistration');
       return;
     }
 
@@ -63,6 +63,7 @@ export class DataTestIdService {
 
     if (registeredDataTestid && registeredDataTestid.element === element) {
       this.duplicateDataTestIds.delete(dataTestid);
+      this.dataTestidElementRef.delete(element);
     }
 
     this.dataTestidElementRef.delete(element);

@@ -1,12 +1,22 @@
-import { Directive, ElementRef, inject, input, isDevMode, OnDestroy, OnInit } from '@angular/core';
+import {
+  Directive,
+  DOCUMENT,
+  ElementRef,
+  inject,
+  input,
+  isDevMode,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { DataTestIdService } from '../services/data-test-id';
 
 @Directive({
   selector: '[libDataTestId]',
 })
-export class DataTestId implements OnInit, OnDestroy {
+export class DataTestIdDirective implements OnInit, OnDestroy {
   private readonly element = inject(ElementRef<HTMLElement>);
   private readonly dataTestIdService = inject(DataTestIdService);
+  private readonly document = inject(DOCUMENT);
   private currentDataTestId: string | null = null;
 
   protected readonly libDataTestId = input<string | null>(null);
@@ -125,7 +135,7 @@ export class DataTestId implements OnInit, OnDestroy {
     }
     const ariaLabelledBy = element.getAttribute('aria-labelledby');
     if (ariaLabelledBy && ariaLabelledBy.trim().length > 0) {
-      const labelledElement = document.getElementById(ariaLabelledBy.trim());
+      const labelledElement = this.document?.getElementById(ariaLabelledBy.trim());
       if (labelledElement) {
         const labelText = labelledElement.textContent;
         if (labelText && labelText.trim().length > 0) {
@@ -158,7 +168,7 @@ export class DataTestId implements OnInit, OnDestroy {
     if (['button', 'submit', 'reset'].includes(tagName)) {
       typeAttribute = element.getAttribute('type') || 'button';
       const valueAttribute =
-        element.getAttribute('value') || (element as HTMLButtonElement).innerText;
+        element.getAttribute('value') || (element as HTMLButtonElement).textContent;
       if (valueAttribute && valueAttribute.trim().length > 0) {
         return this.sanitizeDataTestId(`${typeAttribute}-${valueAttribute.trim()}`);
       }
@@ -242,10 +252,6 @@ export class DataTestId implements OnInit, OnDestroy {
   }
 
   private registerDataTestId(dataTestId: string): void {
-    if (!this.dataTestIdService) {
-      console.warn('[libDataTestId] DataTestIdService is not available');
-      return;
-    }
     this.dataTestIdService.registerDataTestId({
       id: dataTestId,
       element: this.element.nativeElement,
