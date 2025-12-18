@@ -1,6 +1,6 @@
-import { AnchorDataTestIdStrategy } from './anchort-data-test-id-strategy';
+import { AnchorDataTestIdStrategy } from './anchor-data-test-id-strategy';
 import { ButtonDataTestIdStrategy } from './button-data-test-id-strategy';
-import { DataTestidGenerationStrategy } from './date-test-id-generation.strategy';
+import { DataTestidGenerationStrategy } from './data-test-id-generation.strategy';
 import { InputDataTestIdStrategy } from './input-data-test-id-strategy';
 
 export class DataTestidGeneration {

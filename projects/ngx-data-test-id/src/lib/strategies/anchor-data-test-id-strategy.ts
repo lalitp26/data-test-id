@@ -1,4 +1,4 @@
-import { BaseDataTestidGenerationStrategy } from './date-test-id-generation.strategy';
+import { BaseDataTestidGenerationStrategy } from './data-test-id-generation.strategy';
 
 export class AnchorDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
   priority = 3;
@@ -13,11 +13,12 @@ export class AnchorDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
 
     let baseId = '';
 
-    if (type && type !== 'link') {
+    if (text && text !== 'link') {
       baseId = `${type}-${text}`;
+    } else {
+      baseId = type || 'link';
     }
-
-    baseId = this.sanitize(baseId || 'link');
+    baseId = this.sanitize(baseId);
     return this.resolveCollisions(baseId, element);
   }
 

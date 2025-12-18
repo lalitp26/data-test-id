@@ -1,4 +1,4 @@
-import { BaseDataTestidGenerationStrategy } from './date-test-id-generation.strategy';
+import { BaseDataTestidGenerationStrategy } from './data-test-id-generation.strategy';
 
 export class InputDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
   priority = 2;
@@ -47,6 +47,11 @@ export class InputDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
       submit: 'input-submit',
       reset: 'input-reset',
       button: 'input-button',
+      color: 'input-color',
+      range: 'input-range',
+      month: 'input-month',
+      week: 'input-week',
+      image: 'input-image',
     };
 
     return typeMap[type.toLowerCase()] || type.toLowerCase();
@@ -58,11 +63,11 @@ export class InputDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
       return name.trim();
     }
 
-    const placeHolder = element.getAttribute('placeholder');
-    if (!placeHolder) {
+    const placeholder = element.getAttribute('placeholder');
+    if (!placeholder) {
       return null;
     }
 
-    return placeHolder.trim();
+    return placeholder.trim();
   }
 }

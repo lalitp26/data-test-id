@@ -17,12 +17,10 @@ export class AutoDataTestId implements AfterViewInit {
   private readonly element: HTMLElement = this.elementRef.nativeElement;
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.generateAndSetDateTestid();
-    }, 500);
+    this.generateAndSetDataTestid();
   }
 
-  private generateAndSetDateTestid(): void {
+  private generateAndSetDataTestid(): void {
     if (!this.element || this.element.hasAttribute('data-testid')) {
       return;
     }

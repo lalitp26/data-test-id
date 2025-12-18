@@ -1,4 +1,4 @@
-import { BaseDataTestidGenerationStrategy } from './date-test-id-generation.strategy';
+import { BaseDataTestidGenerationStrategy } from './data-test-id-generation.strategy';
 
 export class ButtonDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
   priority = 1;
@@ -20,7 +20,7 @@ export class ButtonDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
 
     let baseId = 'button';
 
-    if (type && type !== 'button') {
+    if (type && type !== 'button' && text && text.length > 0) {
       baseId = `${type}-${text}`;
     }
 

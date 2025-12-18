@@ -53,12 +53,18 @@ export abstract class BaseDataTestidGenerationStrategy implements DataTestidGene
 
   private wouldGenerateSameId(element: HTMLElement, targetId: string): boolean {
     const elementText = this.getElementText(element);
-    const targetText = targetId.split('-').pop() || '';
+    const sanitizedElementText = this.sanitize(elementText);
 
-    return (
-      elementText.toLowerCase().includes(targetText.toLowerCase()) ||
-      targetText.toLowerCase().includes(elementText.toLowerCase())
-    );
+    if (!sanitizedElementText) {
+      return false;
+    }
+
+    if (sanitizedElementText === targetId) {
+      return true;
+    }
+
+    const baseTargetId = targetId.replace(/-\d+$/, '');
+    return sanitizedElementText === baseTargetId;
   }
 
   private getElementText(element: HTMLElement): string {
@@ -71,8 +77,8 @@ export abstract class BaseDataTestidGenerationStrategy implements DataTestidGene
     if (tagName === 'input' || tagName === 'textarea') {
       const name = element.getAttribute('name');
       const placeholder = element.getAttribute('placeholder');
-      const areaLabel = element.getAttribute('aria-label');
-      return name || placeholder || areaLabel || '';
+      const ariaLabel = element.getAttribute('aria-label');
+      return name || placeholder || ariaLabel || '';
     }
 
     return element.textContent?.trim() || '';
