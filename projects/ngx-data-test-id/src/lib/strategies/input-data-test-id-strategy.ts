@@ -1,6 +1,6 @@
-import { BaseDataTestidGenerationStrategy } from './data-test-id-generation.strategy';
+import { BaseDataTestIdGenerationStrategy } from './data-test-id-generation.strategy';
 
-export class InputDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
+export class InputDataTestIdStrategy extends BaseDataTestIdGenerationStrategy {
   priority = 2;
 
   override canHandle(element: HTMLElement): boolean {

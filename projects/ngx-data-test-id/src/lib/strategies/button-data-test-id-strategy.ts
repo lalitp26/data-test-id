@@ -1,6 +1,6 @@
-import { BaseDataTestidGenerationStrategy } from './data-test-id-generation.strategy';
+import { BaseDataTestIdGenerationStrategy } from './data-test-id-generation.strategy';
 
-export class ButtonDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
+export class ButtonDataTestIdStrategy extends BaseDataTestIdGenerationStrategy {
   priority = 1;
 
   override canHandle(element: HTMLElement): boolean {
@@ -46,13 +46,5 @@ export class ButtonDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
       return 'button';
     }
     return type.toLowerCase();
-  }
-
-  private extractKeywords(text: string): string {
-    return text
-      .split(/\s+/)
-      .filter((word) => word.length > 2)
-      .slice(0, 3)
-      .join('-');
   }
 }

@@ -1,10 +1,10 @@
-export interface DataTestidGenerationStrategy {
+export interface DataTestIdGenerationStrategy {
   priority: number;
   generate(element: HTMLElement): string | null;
   canHandle(element: HTMLElement): boolean;
 }
 
-export abstract class BaseDataTestidGenerationStrategy implements DataTestidGenerationStrategy {
+export abstract class BaseDataTestIdGenerationStrategy implements DataTestIdGenerationStrategy {
   abstract priority: number;
   abstract generate(element: HTMLElement): string | null;
   abstract canHandle(element: HTMLElement): boolean;
@@ -82,5 +82,13 @@ export abstract class BaseDataTestidGenerationStrategy implements DataTestidGene
     }
 
     return element.textContent?.trim() || '';
+  }
+
+  protected extractKeywords(text: string): string {
+    return text
+      .split(/\s+/)
+      .filter((word) => word.length > 2)
+      .slice(0, 3)
+      .join('-');
   }
 }

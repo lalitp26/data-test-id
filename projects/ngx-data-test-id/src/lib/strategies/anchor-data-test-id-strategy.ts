@@ -1,10 +1,10 @@
-import { BaseDataTestidGenerationStrategy } from './data-test-id-generation.strategy';
+import { BaseDataTestIdGenerationStrategy } from './data-test-id-generation.strategy';
 
-export class AnchorDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
+export class AnchorDataTestIdStrategy extends BaseDataTestIdGenerationStrategy {
   priority = 3;
   override canHandle(element: HTMLElement): boolean {
     const tagName = element.tagName.toLowerCase();
-    return tagName === 'a' && element.hasAttribute('href');
+    return tagName === 'a';
   }
 
   override generate(element: HTMLElement): string | null {
@@ -44,13 +44,5 @@ export class AnchorDataTestIdStrategy extends BaseDataTestidGenerationStrategy {
       return 'phone-link';
     }
     return 'link';
-  }
-
-  private extractKeywords(text: string): string {
-    return text
-      .split(/\s+/)
-      .filter((word) => word.length > 2)
-      .slice(0, 3)
-      .join('-');
   }
 }

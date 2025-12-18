@@ -12,7 +12,7 @@ import { DataTestidGeneration } from '../strategies/data-test-id-generation';
   [libAutoDataTestId]`,
 })
 export class AutoDataTestId implements AfterViewInit {
-  private readonly strategy = new DataTestidGeneration();
+  private readonly testIdGenerator = new DataTestidGeneration();
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly element: HTMLElement = this.elementRef.nativeElement;
 
@@ -25,7 +25,7 @@ export class AutoDataTestId implements AfterViewInit {
       return;
     }
 
-    const testId = this.strategy.generate(this.element);
+    const testId = this.testIdGenerator.generate(this.element);
 
     if (!testId || testId.length === 0) {
       console.warn('[AutoDataTestId] Generated empty data-testid, using fallback.');
