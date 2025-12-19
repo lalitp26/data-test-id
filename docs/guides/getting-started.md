@@ -229,8 +229,8 @@ The library works out of the box with sensible defaults. For advanced configurat
 ## Need Help?
 
 - 📖 [Full Documentation](../README.md)
-- 💬 [GitHub Discussions](https://github.com/username/ngx-data-test-id/discussions)
-- 🐛 [Report an Issue](https://github.com/username/ngx-data-test-id/issues)
+- 💬 [GitHub Discussions](https://github.com/ngx-data-test-id/ngx-data-test-id/discussions)
+- 🐛 [Report an Issue](https://github.com/ngx-data-test-id/ngx-data-test-id/issues)
 
 ---
 
