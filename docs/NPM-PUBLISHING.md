@@ -58,12 +58,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/username/ngx-data-test-id.git"
+    "url": "https://github.com/your-github-username-or-org/ngx-data-test-id.git"
   },
   "bugs": {
-    "url": "https://github.com/username/ngx-data-test-id/issues"
+    "url": "https://github.com/your-github-username-or-org/ngx-data-test-id/issues"
   },
-  "homepage": "https://github.com/username/ngx-data-test-id#readme",
+  "homepage": "https://github.com/your-github-username-or-org/ngx-data-test-id#readme",
   "peerDependencies": {
     "@angular/common": "^18.0.0 || ^19.0.0 || ^20.0.0",
     "@angular/core": "^18.0.0 || ^19.0.0 || ^20.0.0"
