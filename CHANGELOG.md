@@ -66,5 +66,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/username/ngx-data-test-id/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/username/ngx-data-test-id/releases/tag/v1.0.0
+[Unreleased]: ../../compare/v1.0.0...HEAD
+[1.0.0]: ../../releases/tag/v1.0.0
