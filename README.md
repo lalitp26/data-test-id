@@ -128,7 +128,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## 📄 License
 
-MIT © [Your Name]
+MIT © ngx-data-test-id contributors
 
 ## 🐛 Found a Bug?
 
