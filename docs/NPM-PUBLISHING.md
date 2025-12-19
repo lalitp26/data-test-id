@@ -54,7 +54,7 @@
     "angular19",
     "angular20"
   ],
-  "author": "Your Name <email@example.com>",
+  "author": "username",
   "license": "MIT",
   "repository": {
     "type": "git",
