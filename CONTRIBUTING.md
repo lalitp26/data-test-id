@@ -314,7 +314,7 @@ Brief description of changes
 ## Questions?
 
 - 📖 Read the [documentation](docs/)
-- 💬 Ask in [GitHub Discussions](https://github.com/username/ngx-data-test-id/discussions)
+- 💬 Ask in [GitHub Discussions](https://github.com/orgs/community/discussions)
 - 📧 Email maintainers (for sensitive issues)
 
 ## License
